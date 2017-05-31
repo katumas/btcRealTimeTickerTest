@@ -58,8 +58,8 @@ class bitcoins
 		$data = file_get_contents($url); 
 		$btcPrices = json_decode($data, true);
 		
-		$usdBtc = $btcPrices['USD']['last']; // (15 min delay)
-		$eurBtc = $btcPrices['EUR']['last']; // (15 min delay)
+		$usdBtc = $btcPrices['USD']['last']; // (15 sec delay)
+		$eurBtc = $btcPrices['EUR']['last']; // (15 sec delay)
 		
 		// handle with sources
 		if ($usdBtc) $this->activeUSD++;
@@ -79,8 +79,8 @@ class bitcoins
 		$data = file_get_contents($url); 
 		$btcPrices = json_decode($data, true);
 		
-		$usdBtc = $btcPrices[1]['rate']; // (1 min delay)
-		$eurBtc = $btcPrices[2]['rate']; // (1 min delay)
+		$usdBtc = $btcPrices[1]['rate']; // (1 sec delay)
+		$eurBtc = $btcPrices[2]['rate']; // (1 sec delay)
 		
 		// handle with sources
 		if ($usdBtc) $this->activeUSD++;
@@ -101,8 +101,8 @@ class bitcoins
 		$data = file_get_contents($url); 
 		$btcPrices = json_decode($data, true);
 		
-		$usdBtc = $btcPrices[0]['price_usd']; // (5 min delay - 10 per minute request)
-		$eurBtc = $btcPrices[0]['price_eur']; // (5 min delay - 10 per minute request)
+		$usdBtc = $btcPrices[0]['price_usd']; // (5 sec delay - 10 per minute request)
+		$eurBtc = $btcPrices[0]['price_eur']; // (5 sec delay - 10 per minute request)
 		
 		// handle with sources
 		if ($usdBtc) $this->activeUSD++;
