@@ -5,7 +5,6 @@
 		session_start();
 		$_SESSION['load'] = 1;
 	}
-	$start_time = microtime(true);
 	require_once 'classFile.php';
 	
 	if (!$_SESSION)
@@ -42,6 +41,7 @@ switch($a)
 			<b>Active sources:</b><br/>
 			BTC/USD (<?= $btClass -> activeEUR; ?> of <?= $btClass -> totalEUR; ?>)<br/>
 			EUR/USD (<?= $btClass -> activeUSD; ?> of <?= $btClass -> totalUSD; ?>)<br/>
+			Last update: <?= time(); ?><br/>
 		<?php
 	break;
 	
@@ -61,7 +61,11 @@ switch($a)
 		$btcEur = round($avarageSumEur / $btClass -> activeEUR, 2);
 		
 		// Load jquery ?>
-		<script type='text/javascript'>			
+		<script type='text/javascript'>	
+			$(document).ready(function()
+			{
+				get_test();
+			});
 			var test_interval = 0;
 			function get_test()
 			{
@@ -69,24 +73,18 @@ switch($a)
 				{
 					if (results)
 					{
-
+						$('#div').html('');
 						$('#div').html(results);
+					}
+					else
+					{
+						$('#div').html('<b>Current currency:</b><br/>BTC/USD: <?= $btcUsd;?><br/>BTC/EUR:  <?= $btcEur;?><br/>EUR/USD: <?= round(abs($btcUsd/$btcEur),2);?><br/><br/><b>Active sources:</b><br/>BTC/USD (<?= $btClass -> activeEUR; ?> of <?= $btClass -> totalEUR; ?>)<br/>EUR/USD (<?= $btClass -> activeUSD; ?> of <?= $btClass -> totalUSD; ?>)<br/>');
 					}
 				});
 			}
 			test_interval = setInterval(get_test, 5000, true);
 		</script>
-		<div id="div">
-			<b>Current currency:</b>
-			<br/>
-			BTC/USD: <?= $btcUsd; // count from active for correct results ?><br/>
-			BTC/EUR:  <?= $btcEur; // count from active for correct results  ?><br/>
-			EUR/USD: <?= round(abs($btcUsd/$btcEur),2);?><br/>
-			<br/>
-			<b>Active sources:</b><br/>
-			BTC/USD (<?= $btClass -> activeEUR; ?> of <?= $btClass -> totalEUR; ?>)<br/>
-			EUR/USD (<?= $btClass -> activeUSD; ?> of <?= $btClass -> totalUSD; ?>)<br/>
-		</div>
+		<div id="div"></div>
 	<?php
 	break;
 	}
