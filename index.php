@@ -37,7 +37,7 @@ switch($a)
 			<b>Current currency:</b><br/>
 			BTC/USD: <?= $btcUsd; // count from active for correct results ?><br/>
 			BTC/EUR:  <?= $btcEur; // count from active for correct results  ?><br/>
-			BTC/EUR: <?= round(abs($btcUsd/$btcEur),2);?><br/>
+			EUR/USD: <?= round(abs($btcUsd/$btcEur),2);?><br/>
 			<br/>
 			<b>Active sources:</b><br/>
 			BTC/USD (<?= $btClass -> activeEUR; ?> of <?= $btClass -> totalEUR; ?>)<br/>
@@ -81,7 +81,7 @@ switch($a)
 			<br/>
 			BTC/USD: <?= $btcUsd; // count from active for correct results ?><br/>
 			BTC/EUR:  <?= $btcEur; // count from active for correct results  ?><br/>
-			BTC/EUR: <?= round(abs($btcUsd/$btcEur),2);?><br/>
+			EUR/USD: <?= round(abs($btcUsd/$btcEur),2);?><br/>
 			<br/>
 			<b>Active sources:</b><br/>
 			BTC/USD (<?= $btClass -> activeEUR; ?> of <?= $btClass -> totalEUR; ?>)<br/>
