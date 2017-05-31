@@ -1,4 +1,5 @@
 <?php
+	$start_time = microtime(true);
 	$a = isset($_GET['a']) ? $_GET['a'] : '';
 	if (!isset($_SESSION))
 	{
