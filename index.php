@@ -16,8 +16,8 @@
 			$allUsdActiveArray = $btClass->allUsd;
 			$allEurActiveArray = $btClass->allEur;
 			
-			$avarageSumUsd = round($btc[0], 2) + round($btc2[0], 2) + round($btc3[0], 2);
-			$avarageSumEur = round($btc[1], 2) + round($btc2[1], 2) + round($btc3[1], 2);
+			$avarageSumUsd = round($btc[0] + $btc2[0] + $btc3[0], 2);
+			$avarageSumEur = round($btc[1] + $btc2[1] + $btc3[1], 2);
 			
 			$btcUsd = round($avarageSumUsd / $btClass -> activeUSD, 2);
 			$btcEur = round($avarageSumEur / $btClass -> activeEUR, 2);
@@ -43,16 +43,14 @@
 			$btc2 = $btClass->getFirstSourceData(); 
 			$btc3 = $btClass->getThirdSourceData();
 			
-			$avarageSumUsd = round($btc[0], 2) + round($btc2[0], 2) + round($btc3[0], 2);
-			$avarageSumEur = round($btc[1], 2) + round($btc2[1], 2) + round($btc3[1], 2);
+			$avarageSumUsd = round($btc[0] + $btc2[0] + $btc3[0], 2);
+			$avarageSumEur = round($btc[1] + $btc2[1] + $btc3[1], 2);
 			
 			$btcUsd = round($avarageSumUsd / $btClass -> activeUSD, 2);
 			$btcEur = round($avarageSumEur / $btClass -> activeEUR, 2);
 			
 			// Load jquery ?>
 			<script type='text/javascript'>	
-				$(document).ready(function(){get_test();});
-				
 				var test_interval = 0;
 				function get_test()
 				{
