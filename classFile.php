@@ -1,4 +1,21 @@
 <?php
+// // 
+$start_time = microtime(true);
+$a = isset($_GET['a']) ? $_GET['a'] : '';
+if (!isset($_SESSION))
+{
+	session_start();
+	$_SESSION['load'] = 1;
+}
+// //
+
+if (!$_SESSION)
+{
+	// block if cannot set session
+	exit;
+}
+// //
+
 class bitcoins
 {
 	// global variables
@@ -15,38 +32,34 @@ class bitcoins
 	// html code
 	function __construct($startTime, $loadHtml)
 	{
+		// Set variables
 		$this->sTime = $startTime;
 		$this->htmlStarted = $loadHtml;
-		if ( $loadHtml)
-		{
-			?>
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-		<title>BTC</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1"/>
-		<meta name="author" content="katum"/>
-		<meta name="referrer" content="no-referrer"/>
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-		<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
-	</head>
-	<body onload="get_test();">
-			<?php
-		}
+		
+		if ($this->htmlStarted): ?>
+			<!DOCTYPE html>
+			<html xmlns="http://www.w3.org/1999/xhtml">
+				<head>
+					<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+					<title>BTC</title>
+					<meta name="viewport" content="width=device-width, initial-scale=1"/>
+					<meta name="author" content="katum"/>
+					<meta name="referrer" content="no-referrer"/>
+					<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+					<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+				</head>
+			<body onload="get_test();">
+		<?php endif;
 	}
 	
 	function __destruct()
 	{	
-		if ($this->htmlStarted)
-		{
-		?>
-		<br/>
-		<small style="color:#DEDEDE">Generated in: <?= round(microtime(true) - $this->sTime, 2); ?> sec.</small>
-		</body>
-		</html>
-		<?php
-		}
+		if ($this->htmlStarted): ?>
+			<br/>
+			<small style="color:#DEDEDE">Generated in: <?= round(microtime(true) - $this->sTime, 2); ?> sec.</small>
+			</body>
+			</html>
+		<?php endif;
 	}
 	
 	
@@ -114,15 +127,4 @@ class bitcoins
 		// return as array
 		return [$usdBtc, $eurBtc];
 	}
-	
-	public function allUsd()
-	{
-		return [$this->activeUSD, $this->totalUSD];
-	}
-	
-	public function allEur()
-	{
-		return [$this->activeUSD, $this->totalUSD];
-	}
-	
 }
